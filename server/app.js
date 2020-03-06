@@ -5,11 +5,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var apiRouter = require('./routes/api');
+var common = require('./routes/common');
+var dashboard = require('./routes/dashboard');
+var farmer = require('./routes/farmers');
+var main = require('./routes/main.js');
+var shoppers = require('./routes/shoppers');
+var config = require('./config');
 var cors = require('cors');
 var app = express();
 
+global.db=config;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,11 +26,17 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/testApi',apiRouter);
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
+app.use('/api/profile/:userid',common.getprofile);
+app.use('/api/cart/:userid',dashboard.mycart);
+app.use('/api/farmer/:userid/addItems',farmer.addItems);
+app.use('/api/farmer/:userid/lastsales',farmer.lastSales);
+app.post('/api/logout/:userid',main.logout);
+app.post('/api/login/:userid',main.login);
+app.use('/api/search/:search',main.search);
+app.use('/api/search/itemseller/:item',main.getItemSeller);
 // catch 404 and forward to error handler
+
 app.use(function(req, res, next) {
   next(createError(404));
 });
