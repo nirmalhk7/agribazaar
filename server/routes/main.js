@@ -42,16 +42,13 @@ exports.logout = function(req,res,next){
     });
 }
 exports.login = function(req, res){
-    var message = '';
-    var sess = req.session; 
-    
     if(req.method == "POST"){
-    var post  = req.body;
-    console.log("Remember",post.remember)
-    var email_username= post.user_email;
-    var pass= post.user_password;
-    console.log("auth","Recieved "+email_username+" w/ Password: "+pass);
-    var sql="CALL Users_verify('"+email_username+"',SHA('"+pass+"'));";
+        var post  = req.body;
+        console.log("Remember",post.remember)
+        var email_username= post.user_email;
+        var pass= post.user_password;
+        console.log("auth","Recieved "+email_username+" w/ Password: "+pass);
+        var sql="CALL Users_verify('"+email_username+"',SHA('"+pass+"'));";
     //var sql="select id,email,fullname,username,role from `Users` where (`email`='"+email_username+"' OR `username`='"+email_username+"') AND password='"+pass+"'";
     db.query(sql, function(err, results){ 
         if (err) {
@@ -100,20 +97,16 @@ exports.signup = function(req, res){
         var email=post.Remail;
         var role=post.Rrole;
         console.log("Role "+role);
-        var sql = "call Users_register('"+name+"',sha('"+pass+"'),'"+fname+"','"+email+"','"+role+"','"+address+"');";
+        var sql = "call Users_register('"+name+"',sha('"+pass+"'),'"+fname+"','"+email+"','"+role+"','"+address+"');call Users_getDetailsByUsername('"+name+"');";
         var query = db.query(sql, function(err, result) {
             if (err) {
                 return console.error(err);
             }
-            message = "Succesfull! Your account has been created.";
-
-            res.render('index',{title:"India's Biggest Farmer-to-Consumer Marketplace",accname: name,message: message,level: "info"});
+            res.send(JSON.stringify(result[2]))
         });
         
 
-    } else {
-        res.render('signup');
-    }
+    } 
 };
 exports.getItemSeller = function(req,res,next){
     //FIXME This API doesnt work
