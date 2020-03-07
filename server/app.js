@@ -13,6 +13,7 @@ var shoppers = require('./routes/shoppers');
 var config = require('./config');
 var cors = require('cors');
 var app = express();
+var router = express.Router();
 
 global.db=config;
 
@@ -26,8 +27,10 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', indexRouter);
-app.use('/api/profile/:userid',common.getprofile);
+app.use('/',router.get('/',function(req,res,next){
+  res.render('index',{title:"AgriBazaar"})
+}));
+app.use('/api/profile/:userId',common.getprofile);
 app.use('/api/cart/:userId',dashboard.mycart);
 app.use('/api/farmer/:userid/addItems',farmer.addItems);
 app.use('/api/farmer/:userid/lastsales',farmer.lastSales);
