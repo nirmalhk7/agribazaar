@@ -122,13 +122,15 @@ exports.getItemSeller = function(req,res,next){
     console.log(db.query(sql));
 };
 exports.search = function(req,res,next){
-    let sql="call search_All('"+req.params.search+"');"
+    //FIXME Bugged
+    let sql="call search_All('"+req.params.squery+"');"
+    console.log("SQL",sql);
     db.query(sql,function(err,answ){
         if(err)
         {
             throw console.error("SQL Error",err);
         }
         let ans=JSON.stringify(answ[0]);
-        res.end(ans);
+        return res.end(ans);
     });
 };
