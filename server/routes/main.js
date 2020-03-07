@@ -116,22 +116,11 @@ exports.signup = function(req, res){
     }
 };
 exports.getItemSeller = function(req,res,next){
-    console.log("HI")
-    var sql="call search_getSellers("+req.params.item+");select name,category,description from Items where id=1;";
-    db.query(sql,function(err,op){
-        if(err)
-        {
-            throw console.error("SQL Error",err)
-        }
-        
-        var ans=SON.stringify(op[0])
-        console.log("TESTING",op[2])
-        var itemdetails=JSON.stringify(op[2])
-        console.log("TESTING",itemdetails[0])
-        res.end(ans);
-
-    });
-}
+    //FIXME This API doesnt work
+    console.log("HI");
+    var sql="call search_getSellers("+req.params.item+");";
+    console.log(db.query(sql));
+};
 exports.search = function(req,res,next){
     let sql="call search_All('"+req.params.search+"');"
     db.query(sql,function(err,answ){
@@ -141,5 +130,5 @@ exports.search = function(req,res,next){
         }
         let ans=JSON.stringify(answ[0]);
         res.end(ans);
-    })
-}
+    });
+};
