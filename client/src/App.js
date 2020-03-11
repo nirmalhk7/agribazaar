@@ -1,34 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-class App extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {apiResponse:"this is static msg :( make sure backend server running on port:9000"};
-  }
+import Login from "./components/login.component";
+import SignUp from "./components/signup.component";
 
-  callAPI(){
-    fetch("http://localhost:9000/testApi/")
-    .then(res =>res.text())
-    .then(res => this.setState({apiResponse:res}));
-  }
-
-  componentWillMount(){
-    this.callAPI();
-  }
-render(){
-  return (
+function App() {
+  return (<Router>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {this.state.apiResponse}
-        </p>
-      </header>
-    </div>
+      <div className="auth-wrapper">
+        <div className="auth-inner">
+          <Switch>
+            <Route exact path='/' component={Login} />
+            <Route path="/sign-in" component={Login} />
+            <Route path="/sign-up" component={SignUp} />
+          </Switch>
+        </div>
+      </div>
+    </div></Router>
   );
-}
 }
 
 export default App;
