@@ -42,6 +42,7 @@ exports.logout = function(req,res,next){
     });
 }
 exports.login = function(req, res){
+    console.log("LOGIN ATTEMPT")
     if(req.method == "POST"){
         var post  = req.body;
         console.log("Remember",post.remember)
@@ -77,14 +78,8 @@ exports.login = function(req, res){
         {
             var sess = req.session; 
             console.warn("auth","Incorrect Username "+email_username+" /Password "+pass);
-            req.session.message="Incorrect credentials. Please try again.";
-            req.session.level="danger";
-            res.redirect('/auth');
         }
     })}
-    else{
-        res.redirect('/')
-    }
 };
 exports.signup = function(req, res){
     message = '';

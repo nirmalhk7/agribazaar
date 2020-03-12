@@ -35,7 +35,7 @@ app.use('/api/:userId/cart',dashboard.mycart);
 app.use('/api/:userid/addItems',farmer.addItems);
 app.use('/api/:userid/lastsales',farmer.lastSales);
 app.post('/api/logout/:userid',main.logout);
-app.post('/api/login/:userid',main.login);
+app.post('/api/login',main.login);
 app.use('/api/search/:squery',main.search);
 app.use('/api/search/itemseller/:item',main.getItemSeller);
 // catch 404 and forward to error handler
