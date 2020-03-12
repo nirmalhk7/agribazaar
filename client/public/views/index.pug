@@ -1,0 +1,41 @@
+extends layout
+block content
+  #carouselExampleIndicators.carousel.slide(data-ride="carousel")
+    ol.carousel-indicators
+      li.active(data-target="#carouselExampleIndicators" data-slide-to="0" class="active")
+      li.active(data-target="#carouselExampleIndicators" data-slide-to="0")
+      li.active(data-target="#carouselExampleIndicators" data-slide-to="0")
+    .carousel-inner
+      .carousel-item.active
+        img.d-block.w-100(src="/images/carousel-1.jpg",alt="Carousel 1")
+      .carousel-item
+        img.d-block.w-100(src="/images/carousel-1.jpg",alt="Carousel 2")
+      .carousel-item
+        img.d-block.w-100(src="/images/carousel-3.jpg",alt="Carousel 3")
+    a.carousel-control-prev(href="#carouselExampleIndicators" role="button" data-slide="prev")
+      span.carousel-control-prev-icon(aria-hidden="true")
+      span.sr-only Previous
+    a.carousel-control-next(href="#carouselExampleIndicators" role="button" data-slide="next")
+      span.carousel-control-next-icon(aria-hidden="true")
+      span.sr-only Next
+  .container(style="margin-top:2em")
+    .section-heading(style="text-align:center;margin-top:0px") Affiliates and Sponsorors
+    hr
+    .row
+      .col-lg-3.col-md-4.col-sm-6.col-xs-12
+        .card(style="width: 18rem; margin-left: auto;margin-right: auto;")
+          img.card-img-top(src="images/affiliate.jpg" alt="")
+      .col-lg-3.col-md-4.col-sm-6.col-xs-12
+        .card(style="width: 18rem; margin-left: auto;margin-right: auto;")
+          img.card-img-top(src="images/affiliate-2.jpg" alt="")
+      .col-lg-3.col-md-4.col-sm-6.col-xs-12
+        .card(style="width: 18rem; margin-left: auto;margin-right: auto;")
+          img.card-img-top(src="images/affiliate.jpg" alt="")
+      .col-lg-3.col-md-4.col-sm-6.col-xs-12
+        .card(style="width: 18rem; margin-left: auto;margin-right: auto;")
+          img.card-img-top(src="images/affiliate-2.jpg" alt="")
+    .section-heading(style="text-align:center") Offers and Discounts
+    hr
+    .row
+      
+    
