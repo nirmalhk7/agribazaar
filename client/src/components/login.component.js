@@ -20,10 +20,14 @@ export default class Login extends Component {
     handleSubmit(){
         const { user_email,user_password } = this.state;
         console.log("Posting "+user_email+"-"+user_password)
-        return axios.post('http://localhost:9000/api/login', {
+        axios.post('http://localhost:9000/api/login', {
           user_email,
           user_password
-        });
+        }).then(res => {
+            console.log(res);
+          });
+        
+          this.props.history.replace('/sign-up');
     }
     render() {
         const { user_email,user_password } = this.state;

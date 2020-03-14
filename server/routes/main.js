@@ -49,30 +49,17 @@ exports.login = function(req, res){
         var email_username= post.user_email;
         var pass= post.user_password;
         console.log("auth","Recieved "+email_username+" w/ Password: "+pass);
-        var sql="CALL Users_verify('"+email_username+"',SHA('"+pass+"'));";
+        var sql="CALL Users_verify('"+email_username+"',SHA2('"+pass+"',256));";
     //var sql="select id,email,fullname,username,role from `Users` where (`email`='"+email_username+"' OR `username`='"+email_username+"') AND password='"+pass+"'";
     db.query(sql, function(err, results){ 
         if (err) {
             return console.error("SQL Error",err);
         }
-        var json=JSON.parse(JSON.stringify(results[0]));
+        
+        var json=JSON.stringify(results[0]);
         if(json[0]!=null){
-            req.session.userId=json[0].id;
-            req.session.role=json[0].role;
-            req.session.username=json[0].username;
-            console.info("auth",json[0].fullname+" just logged in!");
-            if(post.remember=="on")
-                res.cookie('username',json[0].username,{maxAge: 2630000})
-                res.cookie('role',json[0].role,{maxAge: 2630000});
-                res.cookie('userId',json[0].id,{maxAge: 2630000})
-            if(json[0].role=="shopper")
-            {
-                res.redirect('/');
-            }
-            else
-            {
-                res.redirect('/profile/'+req.session.username);
-            }
+            console.log(json);
+            res.end(json);
         }
         else
         {
