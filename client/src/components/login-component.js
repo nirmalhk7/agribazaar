@@ -54,11 +54,15 @@ export default class Login extends Component {
                         <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                     </div>
                 </div>
-
                 <button onClick={this.handleSubmit} className="btn btn-primary btn-block">Submit</button>
-                <p className="forgot-password text-right">
+                <div>
+                <p className="forgot-password ">
                     Forgot <a href="#">password?</a>
                 </p>
+                <p className="forgot-password float-left">
+                    New Here <a href="sign-up">sign up</a>
+                </p>
+                </div>
             </form>
         );
     }
