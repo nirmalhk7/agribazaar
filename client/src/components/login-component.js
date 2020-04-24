@@ -27,7 +27,7 @@ export default class Login extends Component {
           user_email,
           user_password
         }).then(res => {
-            console.log(res);
+            console.log("POST RESULT",res);
           });
         
           this.props.history.replace('/');

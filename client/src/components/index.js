@@ -18,7 +18,6 @@ export default class Index extends Component {
         <div>
             <div className='slider'><Navbar/></div>
             <div className='slider'><Slider/></div>
-            <div className='footer'><Footer/></div>
         </div>
         );
     }

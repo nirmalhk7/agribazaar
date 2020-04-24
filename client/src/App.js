@@ -1,5 +1,5 @@
 import React from 'react';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Footer from './components/footer-component'
 import Login from "./components/login-component";
@@ -18,7 +18,9 @@ function App() {
           </Switch>
         </div>
       </div>
-    </div></Router>
+    </div>
+    <Footer/>
+    </Router>
   );
 }
 

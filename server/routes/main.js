@@ -57,7 +57,7 @@ exports.login = function(req, res){
             }
             var json=JSON.stringify(results[0]);
             console.log("JSON Response Value",json[0]!=null,json.length,results[0]!=null,results.length)
-            if(json.length>2 && results.length>2){
+            if(json.length>2){
                 console.log("Accepted",json);
                 res.end(json);
             }
