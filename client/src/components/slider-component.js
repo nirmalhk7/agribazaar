@@ -7,10 +7,10 @@ class Slider extends Component
         super(props);
         this.state = {
           slideImages : [
-            '/home/mksiyak/Desktop/projects/agribazaar/client/public/assets/images/image1.jpg',
-            'client/public/assets/images/image1.jpg',
-            'client/public/assets/images/image2.jpg',
-            'client/public/assets/images/image3.jpg',
+            '/assets/images/image1.jpg',
+            '/assets/images/image1.jpg',
+            '/assets/images/image2.jpg',
+            '/assets/images/image3.jpg',
           ],
            
           properties : {

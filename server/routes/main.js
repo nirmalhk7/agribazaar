@@ -45,27 +45,27 @@ exports.login = function(req, res){
     console.log("LOGIN ATTEMPT")
     if(req.method == "POST"){
         var post  = req.body;
-        console.log("Remember",post.remember)
+        console.log("Cache Values",post.remember)
         var email_username= post.user_email;
         var pass= post.user_password;
         console.log("auth","Recieved "+email_username+" w/ Password: "+pass);
         var sql="CALL Users_verify('"+email_username+"',SHA2('"+pass+"',256));";
     //var sql="select id,email,fullname,username,role from `Users` where (`email`='"+email_username+"' OR `username`='"+email_username+"') AND password='"+pass+"'";
-    db.query(sql, function(err, results){ 
-        if (err) {
-            return console.error("SQL Error",err);
-        }
-        
-        var json=JSON.stringify(results[0]);
-        if(json[0]!=null){
-            console.log(json);
-            res.end(json);
-        }
-        else
-        {
-            var sess = req.session; 
-            console.warn("auth","Incorrect Username "+email_username+" /Password "+pass);
-        }
+        db.query(sql, function(err, results){ 
+            if (err) {
+                return console.error("SQL Error",err);
+            }
+            var json=JSON.stringify(results[0]);
+            console.log("JSON Response Value",json[0]!=null,json.length,results[0]!=null,results.length)
+            if(json.length>2 && results.length>2){
+                console.log("Accepted",json);
+                res.end(json);
+            }
+            else
+            {
+                var sess = req.session; 
+                console.warn("auth","Incorrect Username "+email_username+" /Password "+pass);
+            }
     })}
 };
 exports.signup = function(req, res){

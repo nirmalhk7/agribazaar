@@ -24,13 +24,12 @@ class Navbar extends Component
                         <li className="nav-item"><a className="nav-link" href="/cart">Cart</a></li>
                         {/* <li className="nav-item"><a className="nav-link" href="/addItems/undefined">Add Products</a></li> */}
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" id="navbarDropdown" href="sign-in" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Login/Signup
                             </a>
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a className="dropdown-item" href="/auth">Login</a><a className="dropdown-item" href="/auth">
-                                Sign Up
-                                </a>
+                                <a className="dropdown-item" href="/auth">Login</a>
+                                <a className="dropdown-item" href="/auth">Sign Up</a>
                             </div>
                         </li>
                     </ul>
