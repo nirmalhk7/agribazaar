@@ -30,7 +30,7 @@ export default class Login extends Component {
             console.log(res);
           });
         
-          this.props.history.replace('/sign-up');
+          this.props.history.replace('/');
     }
     render() {
         const { user_email,user_password } = this.state;
