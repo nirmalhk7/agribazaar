@@ -1,0 +1,15 @@
+.navbar {
+    background-color: #54c59f;
+    color: white;
+}
+
+.navbar-brand:before {
+    content: '\1F33E';
+}
+.section-heading {
+    font-family: 'Quicksand', sans-serif;
+    margin-top: 2em;
+}
+#search-form{
+    width: 100%;
+}

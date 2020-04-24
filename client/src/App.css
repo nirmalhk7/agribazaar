@@ -1,23 +1,6 @@
-.navbar-brand{
-  font-family: Rockitt serif;
+a, a:active, a:focus{
+    outline: none; /* Works in Firefox, Chrome, IE8 and above */ 
 }
-.auth-inner {
-    width: 100%;
-        margin: auto;
-        background: #ffffff;
-        box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-        padding: 40px 55px 45px 55px;
-        border-radius: 15px;
-        transition: all .3s;
-  }
-  .auth-wrapper {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: left;
-  }
-  .auth-wrapper .form-control:focus {
-    border-color: #167bff;
-    box-shadow: none;
-  }
-  
+html, body {
+    height: 100%;
+}

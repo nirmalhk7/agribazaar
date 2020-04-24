@@ -1,14 +1,13 @@
 import React , {Component} from 'react'
 import { Slide } from 'react-slideshow-image';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import "../shared/stylesheets/slider-style.css"
 class Slider extends Component
 {
     constructor(props){
         super(props);
         this.state = {
           slideImages : [
-            '/assets/images/image1.jpg',
             '/assets/images/image1.jpg',
             '/assets/images/image2.jpg',
             '/assets/images/image3.jpg',

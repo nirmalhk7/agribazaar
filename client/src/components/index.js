@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import '../App.css';
 import Footer from "./footer-component";
 import Navbar from './navbar-component';
 import Slider from './slider-component';
@@ -16,8 +15,11 @@ export default class Index extends Component {
     render() {
         return (
         <div>
-            <div className='slider'><Navbar/></div>
+            <div className='navbar'><Navbar/></div>
             <div className='slider'><Slider/></div>
+            <div className='slider'><Slider/></div>
+            <div className='slider'><Slider/></div>
+            <div className="footer"><Footer/></div>
         </div>
         );
     }

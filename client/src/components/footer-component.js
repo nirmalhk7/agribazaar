@@ -1,4 +1,5 @@
 import React , {Component} from 'react'
+import "../shared/stylesheets/footer-style.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 class Footer extends Component
 {
@@ -18,14 +19,18 @@ class Footer extends Component
                         <div className="col-lg-3 col-md-4 col-sm-12 col-xs-12">
                             <ul>
                                 <li>Some Stupid Things.</li>
+                                <li>Some Stupid Things.</li>
+                                <li>Some Stupid Things.</li>
                             </ul>
                         </div>
                         <div className="col-lg-3 col-md-4 col-sm-12 col-xs-12">
                             <ul>
                                 <li>Some Stupid Things.</li>
+                                <li>Some Stupid Things.</li>
+                                <li>Some Stupid Things.</li>
                             </ul>
                         </div>
-                        <div className="div col-lg-6 col-md-4 col-sm-12 col-xs-12" styles="text-align:right;">Project <br/>by Nirmal Khedkar (181IT230),<br/>Mukesh Kumar (181IT228) and<br/>Yash Parakh (181IT253)</div>
+                        <div className="div col-lg-6 col-md-4 col-sm-12 col-xs-12" id = "special">Project <br/>by Nirmal Khedkar (181IT230),<br/>Mukesh Kumar (181IT228) and<br/>Yash Parakh (181IT253)</div>
                     </div>
                 </div>
             </footer>
