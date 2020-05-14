@@ -27,7 +27,11 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/',router.get('/',function(req,res,next){
+
+app.use('/', router.get('/',function(req,res,next){
+  res.redirect('/api')
+}));
+app.use('/api',router.get('/',function(req,res,next){
   res.render('index',{title:"AgriBazaar"})
 }));
 app.post('/api/logout/:userid',main.logout);
@@ -38,6 +42,13 @@ app.use('/api/:userid/addItems',farmer.addItems);
 app.use('/api/:userid/lastsales',farmer.lastSales);
 app.use('/api/search/:squery',main.search);
 app.use('/api/search/itemseller/:item',main.getItemSeller);
+
+
+var searchRouter = require('./routes/searchRouter');
+var itemRouter = require('./routes/itemRouter');
+var authRouter = require()
+app.use('/api/search',searchRouter);
+app.use('/api/item',itemRouter);
 // catch 404 and forward to error handler
 
 app.use(function(req, res, next) {
