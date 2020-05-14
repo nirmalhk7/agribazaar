@@ -17,6 +17,12 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
+var runmode = process.env.NODE_ENV;
+if(!runmode){
+  runmode="development"
+}
+runmode.toUpperCase();
+console.log("Running in "+runmode+" mode on port "+port);
 
 var server = http.createServer(app);
 

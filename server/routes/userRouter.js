@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
+
 router.route('/:userid')
 .get((req,res,next)=>{
-    console.log('Display User Details')
-    var sql="CALL Users_getDetails("+req.params.userId+");"
+// Verified: Works
+    var sql="CALL Users_getDetails("+req.params.userid+");"
+    console.log("QUERY",sql)
     db.query(sql,function(err,rep){
         if(err)
         {

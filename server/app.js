@@ -32,18 +32,16 @@ var farmerRouter = require('./routes/farmerRouter');
 var mysqlRouter = require('./config');
 global.db=mysqlRouter;
 
-app.use('/', router.get('/',function(req,res,next){
-  res.redirect('/api')
-}));
-app.use('/api',router.get('/',function(req,res,next){
-  res.render('index',{title:"AgriBazaar"})
-}));
-app.use('/api/search',searchRouter);
-app.use('/api/item',itemRouter);
-app.use('/api/auth',authRouter);
-app.use('/api/cartRouter',cartRouter);
-app.use('/api/users',userRouter);
-app.use('/api/farmers',farmerRouter);
+
+app.use('/api',(req,res,next)=>{
+  res.end('AgriBazaar Server is Up!')
+});
+app.use('/search',searchRouter);
+app.use('/item',itemRouter);
+app.use('/auth',authRouter);
+app.use('/cartRouter',cartRouter);
+app.use('/users',userRouter);
+app.use('/farmers',farmerRouter);
 // catch 404 and forward to error handler
 
 app.use(function(req, res, next) {

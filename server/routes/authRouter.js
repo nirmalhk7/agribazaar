@@ -7,9 +7,9 @@ router.route('/login')
     console.log("Cache Values",post.remember)
     var email_username= post.user_email;
     var pass= post.user_password;
-    console.log("auth","Recieved "+email_username+" w/ Password: "+pass);
     var sql="CALL Users_verify('"+email_username+"',SHA2('"+pass+"',256));";
 //var sql="select id,email,fullname,username,role from `Users` where (`email`='"+email_username+"' OR `username`='"+email_username+"') AND password='"+pass+"'";
+    console.log("QUERY",sql);
     db.query(sql, function(err, results){ 
         if (err) {
             return console.error("SQL Error",err);
@@ -17,13 +17,16 @@ router.route('/login')
         var json=JSON.stringify(results[0]);
         console.log("JSON Response Value",json[0]!=null,json.length,results[0]!=null,results.length)
         if(json.length>2){
-            console.log("Accepted",json);
+            console.log("RESULT",json);
+            console.log("Login Accepted!",req.body.user_email)
             res.end(json);
         }
         else
         {
             var sess = req.session; 
+            res.statusCode=401
             console.warn("auth","Incorrect Username "+email_username+" /Password "+pass);
+            res.end("Unauthorized- Incorrect")
         }
     })
 })
