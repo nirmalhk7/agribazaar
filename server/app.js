@@ -4,18 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var common = require('./routes/common');
-var dashboard = require('./routes/dashboard');
-var farmer = require('./routes/farmers');
-var main = require('./routes/main');
-var shoppers = require('./routes/shoppers');
-var config = require('./config');
+
+
 var cors = require('cors');
 var app = express();
 var router = express.Router();
 
-global.db=config;
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,27 +23,27 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var searchRouter = require('./routes/searchRouter');
+var itemRouter = require('./routes/itemRouter');
+var authRouter = require('./routes/authRouter');
+var cartRouter = require('./routes/cartRouter');
+var userRouter = require('./routes/userRouter');
+var farmerRouter = require('./routes/farmerRouter');
+var mysqlRouter = require('./config');
+global.db=mysqlRouter;
+
 app.use('/', router.get('/',function(req,res,next){
   res.redirect('/api')
 }));
 app.use('/api',router.get('/',function(req,res,next){
   res.render('index',{title:"AgriBazaar"})
 }));
-app.post('/api/logout/:userid',main.logout);
-app.post('/api/login',main.login);
-app.use('/api/:userId',common.getprofile);
-app.use('/api/:userId/cart',dashboard.mycart);
-app.use('/api/:userid/addItems',farmer.addItems);
-app.use('/api/:userid/lastsales',farmer.lastSales);
-app.use('/api/search/:squery',main.search);
-app.use('/api/search/itemseller/:item',main.getItemSeller);
-
-
-var searchRouter = require('./routes/searchRouter');
-var itemRouter = require('./routes/itemRouter');
-var authRouter = require()
 app.use('/api/search',searchRouter);
 app.use('/api/item',itemRouter);
+app.use('/api/auth',authRouter);
+app.use('/api/cartRouter',cartRouter);
+app.use('/api/users',userRouter);
+app.use('/api/farmers',farmerRouter);
 // catch 404 and forward to error handler
 
 app.use(function(req, res, next) {

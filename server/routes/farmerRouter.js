@@ -1,4 +1,8 @@
-exports.lastSales= function(req,res,next){
+var express = require('express');
+var router = express.Router();
+
+router.route('/:farmerId/last-sales')
+.get((req,res,next)=>{
     console.log(sql);
     var sql="CALL Seller_getLastSales("+req.session.userId+");"
     db.query(sql,function(err,results){
@@ -10,9 +14,10 @@ exports.lastSales= function(req,res,next){
         console.log(sales);
         res.end(sales);
     });
-}
-exports.addItems= function(req,res,next){
-    //TODO This is pending from DB side as well
+});
+
+router.route('/:farmerId/add')
+.post((req,res,next)=>{
     var sess=req.session;
     if(req.session.userId!=null && req.params.username==req.session.username)
     {
@@ -24,4 +29,6 @@ exports.addItems= function(req,res,next){
         req.session.level="warning"
         res.redirect('/auth')
     }
-}
+});
+
+module.exports = router
