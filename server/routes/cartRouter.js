@@ -6,14 +6,13 @@ router.route('/')
     console.log('Get Cart');
     var userId =  req.params.userId;
     let sql="call Cart_getItems("+userId+")";
-    db.query(sql,function(err,results){
+    db.query(sql,function(err,ans){
         if(err)
         {
             throw console.error("SQL Error",err);
         }
-        var cart= JSON.stringify(results[0]);
-        console.log("Cart",cart);
-        res.end(cart);
+        console.log("RESULT",JSON.stringify(ans[0]));
+        res.end(JSON.stringify(ans[0]));
     });
 })
 .post((req,res,next)=>{

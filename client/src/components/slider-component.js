@@ -11,8 +11,7 @@ class Slider extends Component
             '/assets/images/image1.jpg',
             '/assets/images/image2.jpg',
             '/assets/images/image3.jpg',
-          ],
-           
+          ],       
           properties : {
             duration: 5000,
             transitionDuration: 500,
@@ -37,12 +36,10 @@ class Slider extends Component
                   </div>
                   <div className="each-slide">
                     <div style={{'backgroundImage': `url(${this.state.slideImages[1]})`}}>
-                      <span>Slide 2</span>
                     </div>
                   </div>
                   <div className="each-slide">
                     <div style={{'backgroundImage': `url(${this.state.slideImages[2]})`}}>
-                      <span>Slide 3</span>
                     </div>
                   </div>
                 </Slide>

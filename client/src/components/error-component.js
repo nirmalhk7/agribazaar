@@ -13,13 +13,13 @@ class Error extends Component {
     }
     render() {
         return (
-            <div className="overlay overlay--scanline error-body">
+            <div className="overlay  error-body bg-warning">
                 <div className="overlay overlay--vignette">
                     <div className="flex-full-justify">
                         <div className="flex-inner">
-                            <div className="text-center">
+                            <div className="text-center text-white">
                                 <h1>{this.state.errorcode}</h1>
-                                <h3 className="text-center">
+                                <h3 className="text-center text-white">
                                     {this.state.errormsg}
                                 </h3>
                                 <p>

@@ -50,21 +50,4 @@ router.route('/signup')
     });
 })
 
-router.route('/logout')
-.post((req,res,next)=>{
-    console.log('Logging Out!');
-    var sess = req.session; 
-    console.log("Auth: "+req.session.username+" is trying to logout.");
-    req.session.destroy(function(err){
-        if(err){
-            console.log("Auth:"+err);
-        }else{
-            console.log("Auth: Logged Out!");
-            res.clearCookie('userId');
-            res.clearCookie('username');
-            res.clearCookie('role');
-            res.redirect('/');
-        }
-    });
-})
 module.exports = router;

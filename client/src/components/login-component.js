@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios"; 
 import  "../shared/stylesheets/login-style.css";
+import { serverUrl } from "../shared/baseUrl";
 export default class Login extends Component {
     constructor(props){
         super(props);
@@ -20,11 +21,15 @@ export default class Login extends Component {
     handleSubmit(){
         const { user_email,user_password } = this.state;
         console.log("Posting "+user_email+"-"+user_password)
-        axios.post('http://localhost:9000/api/login', {
+        axios.post(serverUrl+"/auth/login", {
           user_email,
           user_password
         }).then(res => {
             console.log("POST RESULT",res);
+            
+          })
+          .catch(err=>{
+              console.log("Error ",err)
           });
         
           this.props.history.replace('/');

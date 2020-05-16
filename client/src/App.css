@@ -4,3 +4,7 @@ a, a:active, a:focus{
 html, body {
     height: 100%;
 }
+.each-slide > div {
+    min-height: 500px!important;
+    height: auto;
+}
