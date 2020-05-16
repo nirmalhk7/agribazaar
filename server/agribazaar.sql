@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.20, for Linux (x86_64)
 --
 -- Host: localhost    Database: agribazaar
 -- ------------------------------------------------------
--- Server version	8.0.19-0ubuntu0.19.10.3
+-- Server version	8.0.20-0ubuntu0.20.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -164,7 +164,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'nirmal','8017d27151912033277faad0effc8662e0686b3602989ca7c382e77d0f7a8095','Nirmal Khedkar','nirmal@agribazaar.com','farmer','address 1'),(2,'mukesh','648461bf64b0639d7944cd41b49df473405921f3d69f79ffcb4d5066794996e4','Mukesh Siyak','mukesh@agribazaar.com','shopper','address 2'),(3,'yash','262cc47030b1803064844b94c1cb0054a247d1e550e26bb33f215149d8b2c72e','Yash Parakh','yash@agribazaar.com','shopper','B5RX'),(4,'john','96d9632f363564cc3032521409cf22a852f2032eec099ed5967c0d000cec607a','John Doe','john@doe.com','farmer','john street'),(5,'jane','81f8f6dde88365f3928796ec7aa53f72820b06db8664f5fe76a7eb13e24546a2','Jane Doe','jane@doe.com','shopper','Jane Street'),(6,'nirmalhk7','8017d27151912033277faad0effc8662e0686b3602989ca7c382e77d0f7a8095','NK','nirmal@nirmal.com','shopper','Hello Street');
+INSERT INTO `Users` VALUES (1,'nirmal','8017d27151912033277faad0effc8662e0686b3602989ca7c382e77d0f7a8095','Nirmal Khedkar','nirmal@agribazaar.com','farmer','address 1'),(2,'mukesh','648461bf64b0639d7944cd41b49df473405921f3d69f79ffcb4d5066794996e4','Mukesh Siyak','mukesh@agribazaar.com','shopper','address 2'),(3,'yash','262cc47030b1803064844b94c1cb0054a247d1e550e26bb33f215149d8b2c72e','Yash Parakh','yash@agribazaar.com','shopper','B5RX'),(4,'john','96d9632f363564cc3032521409cf22a852f2032eec099ed5967c0d000cec607a','John Doe','john@doe.com','farmer','john street');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,6 +183,25 @@ UNLOCK TABLES;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Cart_getItems`(in usrid integer)
 begin select Items.name as "ItemName", Users.fullname as "SellerName", Cart.quantity as "Quantity",Cart.itemstatus as "ItemStatus",Cart.price as "ItemPrice" from Cart JOIN Items ON Items.id=Cart.itemno JOIN Users ON Cart.itemSellerId=Users.id where userId=usrid AND ItemStatus="buying" ; end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `deleteAccount` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteAccount`(in emailGiven varchar(50))
+begin
+DELETE FROM Users WHERE Users.email=emailGiven;
+end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -388,4 +407,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-01  8:45:46
+-- Dump completed on 2020-05-16 12:46:38
