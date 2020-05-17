@@ -9,17 +9,33 @@ router.route('/')
     db.query(sql,function(err,ans){
         if(err)
         {
-            throw console.error("SQL Error",err);
+            throw console.error("ERROR",err);
         }
         console.log("RESULT",JSON.stringify(ans[0]));
         res.end(JSON.stringify(ans[0]));
     });
 })
-.post((req,res,next)=>{
-    console.log('Add to Cart');
+.put((req,res,next)=>{
+    var sql = "CALL Cart_addToCart("+req.params.userId+")";
+    console.log("QUERY",sql);
+    db.query(sql,(err,ans)=>{
+        if(err){
+            throw console.error("ERROR",err);
+        }
+        console.log("RESULT",JSON.stringify(ans[0]));
+        res.end(JSON.stringify(ans[0]));
+    })
 })
 .delete((req,res,next)=>{
-    console.log('Delete all in Cart');
+    var sql = "CALL Cart_clearAll("+req.params.userId+")";
+    console.log("QUERY",sql);
+    db.query(sql,(err,ans)=>{
+        if(err){
+            throw console.error("ERROR",err);
+        }
+        console.log("RESULT",JSON.stringify(ans[0]));
+        res.end(JSON.stringify(ans[0]));
+    })
 });
 
 router.route('/:itemid')

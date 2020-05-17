@@ -20,10 +20,32 @@ router.route('/:userid')
     });
 })
 .put((req,res,next)=>{
-    console.log('Update user profile');
+    var sql="CALL Users_updateDetails("+req.params.user_name+",SHA2("+req.params.password+"),"+req.params.full_name+","+req.params.user_email+","+req.params.user_address+");";
+    console.log("QUERY",sql);
+    db.query(sql,(err,ans)=>{
+        if(err){
+            console.error("ERROR",err);
+            res.statusCode=404;
+        }
+        else{
+            console.log("RESULT",JSON.stringify(ans[0]));
+            res.end(JSON.stringify(ans[0]));
+        }
+    })
 })
 .delete((req,res,next)=>{
-    console.log('Delete User. Redirect to Root');
+    var sql="CALL Users_deleteUsers("+req.params.user_name+");";
+    console.log("QUERY",sql);
+    db.query(sql,(err,ans)=>{
+        if(err){
+            console.error("ERROR",err);
+            res.statusCode=500;
+        }
+        else{
+            console.log("RESULT",JSON.stringify(ans[0]));
+            res.end(JSON.stringify(ans[0]));
+        }
+    })
 });
 
 module.exports = router;

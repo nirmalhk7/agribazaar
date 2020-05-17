@@ -8,7 +8,6 @@ class Slider extends Component
         super(props);
         this.state = {
           slideImages : [
-            '/assets/images/image1.jpg',
             '/assets/images/image2.jpg',
             '/assets/images/image3.jpg',
           ],       
@@ -31,15 +30,10 @@ class Slider extends Component
                 <Slide {...this.state.properties}>
                   <div className="each-slide">
                     <div style={{'backgroundImage': `url(${this.state.slideImages[0]})`}}>
-                      <span>Slide 1</span>
                     </div>
                   </div>
                   <div className="each-slide">
                     <div style={{'backgroundImage': `url(${this.state.slideImages[1]})`}}>
-                    </div>
-                  </div>
-                  <div className="each-slide">
-                    <div style={{'backgroundImage': `url(${this.state.slideImages[2]})`}}>
                     </div>
                   </div>
                 </Slide>

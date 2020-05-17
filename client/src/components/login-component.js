@@ -26,7 +26,7 @@ export default class Login extends Component {
           user_password
         }).then(res => {
             console.log("POST RESULT",res);
-            
+
           })
           .catch(err=>{
               console.log("Error ",err)
