@@ -16,6 +16,8 @@ class Navbar extends Component{
         });
     }
     render(){
+        console.log("CHECK2",this.props.user);
+        console.log("CHECK2",this.props.handleAccount("",""))
         const renderDropdown = (username) => {
             if(username){
                 return(
@@ -24,7 +26,7 @@ class Navbar extends Component{
                             {username}
                         </a>
                         <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a className="dropdown-item" href="/sign-in">Logout</a>
+                            <Link className="dropdown-item" onClick={()=>{this.props.handleAccount("","")}}>Logout</Link>
                         </div>
                     </li>
                 )
@@ -36,9 +38,8 @@ class Navbar extends Component{
                             Login/Signup
                         </a>
                         <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a className="dropdown-item" href="/sign-in" >Login</a>
-                            <Link to="/sign-in"></Link>
-                            <a className="dropdown-item" href="/sign-up">Sign Up</a>
+                            <Link className="dropdown-item" to="/sign-in">Login</Link>
+                            <Link className="dropdown-item" to="/sign-up">Sign Up</Link>
                         </div>
                     </li>
                 );

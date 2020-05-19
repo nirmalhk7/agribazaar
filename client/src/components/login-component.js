@@ -9,7 +9,6 @@ export default class Login extends Component {
           user_email:'',
           user_password:''
         }
-
         this.handleChangeField = this.handleChangeField.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -26,7 +25,7 @@ export default class Login extends Component {
           user_password
         }).then(res => {
             console.log("POST RESULT",res);
-
+            this.props.handleAccount(user_email,user_password);
           })
           .catch(err=>{
               console.log("Error ",err)
