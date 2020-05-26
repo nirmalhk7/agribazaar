@@ -7,14 +7,16 @@ import Login from "./components/login-component";
 import SignUp from "./components/signup-component";
 import Cart from "./components/cart-component";
 import Error from "./components/error-component"
+import Product from "./components/product-description-component"
 function App() {
   return (<Router>
     <div className="App">
           <Switch>
+            <Route exact path='/' component={Index} />
             <Route path="/sign-in" component={Login} />
             <Route path="/sign-up" component={SignUp} />
             <Route path="/cart" component={Cart} />
-            <Route exact path='/' component={Index} />
+            <Route path="/product/:id" component={Product}/>
             <Route exact path='*' component={Error} />
           </Switch>
     </div></Router>

@@ -2,14 +2,16 @@ import React, { Component } from "react";
 import Footer from "./footer-component";
 import Navbar from './navbar-component';
 import Slider from './slider-component';
-import Products from './products-component'
+import Products from './products-component';
+import Offer from "./offer-component";
 import "../shared/stylesheets/index-style.css"
+import slides from '../shared/data/slider-images'
 export default class Index extends Component {
     constructor(props){
         super(props);
         this.state = {
             email: "",
-            username: ""
+            username: "",
         }
         this.handleAccount=this.handleAccount.bind(this)
     }
@@ -23,7 +25,8 @@ export default class Index extends Component {
         return (
         <div>
             <div className='navbar'><Navbar user={this.state} handler={this.handleAccount}/></div>
-            <div className='slider'><Slider/></div>
+            <div className='slider'><Slider images = {slides.images}/></div>
+            <div className="offer"><Offer/></div>
             <div className="containers-fluid">
             <div className='products'><Products/></div>
             </div>

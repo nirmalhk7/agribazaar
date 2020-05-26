@@ -1,1 +1,1 @@
-export const serverUrl = "http://localhost:9000";
+export default {serverUrl : "loacalhost:3000/"}

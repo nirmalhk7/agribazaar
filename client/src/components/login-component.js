@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios"; 
 import  "../shared/stylesheets/login-style.css";
-import { serverUrl } from "../shared/baseUrl";
+import serverUrl  from "../shared/baseUrl";
 export default class Login extends Component {
     constructor(props){
         super(props);
