@@ -12,7 +12,7 @@ const Index = (props) => {
     return (
         <div>
             <div className='navbar'><Navbar user={props.user} handleAccount={props.handleAccount}/></div>
-            <div className='slider'><Slider/></div>
+            <div className='slider'><Slider images = {slides.images}/></div>
             <div className="offer"><Offer/></div>
             <div className="containers-fluid">
                 <div className='products'>
