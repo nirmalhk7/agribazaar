@@ -1,2 +1,2 @@
 
-export var serverUrl = "localhost:3000/"
+export var serverUrl = "http://localhost:9000/"

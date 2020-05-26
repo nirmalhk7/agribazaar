@@ -23,18 +23,18 @@ class Login extends Component {
         event.preventDefault();
         const { user_email,user_password } = this.state;
         console.log("Posting "+user_email+"-"+user_password)
-        axios.post(serverUrl+"/auth/login", {
+        axios.post(serverUrl+"auth/login", {
             user_email,
             user_password
         }).then(res => {
 
             this.props.handleAccount(res.data[0]["email"],res.data[0]["username"],res.data[0]["role"],document.getElementById("customCheck1").checked);  
+        })        
+        .then(()=>{
+            this.props.history.push('/')
         })
         .catch(err=>{
             console.log("Error ",err)
-        })
-        .then(()=>{
-            this.props.history.push('/')
         });
         
 
