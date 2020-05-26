@@ -1,1 +1,2 @@
-export default {serverUrl : "loacalhost:3000/"}
+
+export var serverUrl = "localhost:3000/"

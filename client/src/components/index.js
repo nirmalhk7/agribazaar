@@ -6,7 +6,8 @@ import Products from './products-component';
 import Offer from "./offer-component";
 import "../shared/stylesheets/index-style.css"
 import slides from '../shared/data/slider-images'
-<<<<<<< HEAD
+
+
 const Index = (props) => {
     return (
         <div>
