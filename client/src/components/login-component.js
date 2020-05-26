@@ -27,7 +27,8 @@ class Login extends Component {
             user_email,
             user_password
         }).then(res => {
-            this.props.handleAccount(res.data[0]["email"],res.data[0]["username"],res.data[0]["role"]);  
+
+            this.props.handleAccount(res.data[0]["email"],res.data[0]["username"],res.data[0]["role"],document.getElementById("customCheck1").checked);  
         })
         .catch(err=>{
             console.log("Error ",err)
@@ -35,6 +36,7 @@ class Login extends Component {
         .then(()=>{
             this.props.history.push('/')
         });
+        
 
     }
     render() {
