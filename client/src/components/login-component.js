@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import axios from "axios"; 
 import  "../shared/stylesheets/login-style.css";
 import { serverUrl } from "../shared/baseUrl";
-export default class Login extends Component {
+import { withRouter } from "react-router-dom";
+class Login extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -18,23 +19,23 @@ export default class Login extends Component {
           [key]: event.target.value,
         });
     }
-    handleSubmit(){
-        
+    handleSubmit(event){
+        event.preventDefault();
         const { user_email,user_password } = this.state;
         console.log("Posting "+user_email+"-"+user_password)
         axios.post(serverUrl+"/auth/login", {
             user_email,
             user_password
         }).then(res => {
-            console.log("POST RESULT",res.data[0]);
-            this.props.handleAccount(res.data[0]["email"],res.data[0]["username"],res.data[0]["role"]);
-            
+            this.props.handleAccount(res.data[0]["email"],res.data[0]["username"],res.data[0]["role"]);  
         })
         .catch(err=>{
             console.log("Error ",err)
+        })
+        .then(()=>{
+            this.props.history.push('/')
         });
-  //      this.props.history.replace('/');
-        
+
     }
     render() {
         const { user_email,user_password } = this.state;
@@ -71,3 +72,4 @@ export default class Login extends Component {
         );
     }
 }
+export default withRouter(Login);

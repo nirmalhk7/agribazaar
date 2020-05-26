@@ -35,7 +35,7 @@ export default class App extends Component {
               <Route path="/sign-in" component={() => <Login handleAccount={this.handleAccount}/>} />
               <Route path="/sign-up" component={SignUp} />
               <Route path="/cart" component={Cart} />
-              <Route exact path='/' component={() => <Index user={this.state} handler={this.handleAccount} />} />}  />
+              <Route exact path='/' component={() => <Index user={this.state} handleAccount={this.handleAccount} />} />}  />
               <Route exact path='*' component={Error} />
             </Switch>
       </div></Router>

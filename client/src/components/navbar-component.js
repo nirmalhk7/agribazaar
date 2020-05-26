@@ -24,7 +24,7 @@ class Navbar extends Component{
                             {username}
                         </a>
                         <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <Link className="dropdown-item" onClick={()=>this.props.handleAccount("","")}>Logout</Link>
+                            <Link className="dropdown-item" onClick={()=>this.props.handleAccount("","","")}>Logout</Link>
                         </div>
                     </li>
                 )
