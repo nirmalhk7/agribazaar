@@ -8,6 +8,7 @@ import SignUp from "./components/signup-component";
 import Cart from "./components/cart-component";
 import Error from "./components/error-component"
 import Cookies from "js-cookie";
+import Product from "./components/product-description-component"
 export default class App extends Component {
   constructor(props){
     super(props);
@@ -17,7 +18,6 @@ export default class App extends Component {
       role: Cookies.get('user_role'),
       remember: false
     }
-
 
     this.handleAccount=this.handleAccount.bind(this)
   }
@@ -52,6 +52,7 @@ export default class App extends Component {
               <Route path="/sign-in" component={() => <Login handleAccount={this.handleAccount}/>} />
               <Route path="/sign-up" component={SignUp} />
               <Route path="/cart" component={Cart} />
+              <Route path="/product/:id" component={Product}/>
               <Route exact path='/' component={() => <Index user={this.state} handleAccount={this.handleAccount} />} />}  />
               <Route exact path='*' component={Error} />
             </Switch>

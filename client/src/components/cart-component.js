@@ -9,7 +9,7 @@ class Cart extends Component {
         return (
             <div>
                 Cart will go here
-</div>
+            </div>
         );
     }
 }
