@@ -13,25 +13,28 @@ export default class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleChangeField(key, event) {
+     //   console.log(key,event.target.value)
         this.setState({
           [key]: event.target.value,
         });
     }
     handleSubmit(){
+        
         const { user_email,user_password } = this.state;
         console.log("Posting "+user_email+"-"+user_password)
         axios.post(serverUrl+"/auth/login", {
-          user_email,
-          user_password
+            user_email,
+            user_password
         }).then(res => {
-            console.log("POST RESULT",res);
-            this.props.handleAccount(user_email,user_password);
-          })
-          .catch(err=>{
-              console.log("Error ",err)
-          });
+            console.log("POST RESULT",res.data[0]);
+            this.props.handleAccount(res.data[0]["email"],res.data[0]["username"],res.data[0]["role"]);
+            
+        })
+        .catch(err=>{
+            console.log("Error ",err)
+        });
+  //      this.props.history.replace('/');
         
-          this.props.history.replace('/');
     }
     render() {
         const { user_email,user_password } = this.state;

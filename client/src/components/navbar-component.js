@@ -12,12 +12,10 @@ class Navbar extends Component{
     }
     handleChangeField(key, event) {
         this.setState({
-          [key]: event.target.value,
+            [key]: event.target.value,
         });
     }
     render(){
-        console.log("CHECK2",this.props.user);
-        console.log("CHECK2",this.props.handleAccount("",""))
         const renderDropdown = (username) => {
             if(username){
                 return(
@@ -26,7 +24,7 @@ class Navbar extends Component{
                             {username}
                         </a>
                         <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <Link className="dropdown-item" onClick={()=>{this.props.handleAccount("","")}}>Logout</Link>
+                            <Link className="dropdown-item" onClick={()=>this.props.handleAccount("","")}>Logout</Link>
                         </div>
                     </li>
                 )
