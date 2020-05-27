@@ -15,7 +15,7 @@ class Offer extends Component
               <div className="row">
               {
                   offerdata.offers.map( offer=>
-                    <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div key={offer.id} className="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                       <div className="card" ><img className="card-img-top" src={offer.image} alt="" /></div>
                     </div>
                     )

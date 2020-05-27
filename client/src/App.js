@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
 import  Index from "./components/index"
 import Login from "./components/login-component";
 import SignUp from "./components/signup-component";
@@ -40,25 +40,29 @@ export default class App extends Component {
       Cookies.remove('user_username');
 
     }
-    console.log("handleAccount",this.state);
   }
    
   render(){
-    console.log("COOKIE",Cookies.get("stupidshit"),!Cookies.get("stuo"))
-    console.log("App.js",this.handleAccount);
+      const DefaultContainer = () =>(
+        <>
+        <Route exact path="/cart" component={Cart} />
+        <Route path="/product/:id" component={Product}/>
+        <Route exact path='/' component={() => <Index user={this.state} handleAccount={this.handleAccount} />} />}  />
+        </>
+      )
       return (
-      <Router>
-        <div className="App">
+      <BrowserRouter>
+
           <Switch>
-            <Route path="/sign-in" component={() => <Login handleAccount={this.handleAccount}/>} />
-            <Route path="/sign-up" component={SignUp} />
-            <Route path="/cart" component={Cart} />
-            <Route path="/product/:id" component={Product}/>
-            <Route exact path='/' component={() => <Index user={this.state} handleAccount={this.handleAccount} />} />}  />
-            <Route exact path='*' component={Error} />
+            <div className="App">
+              
+              <Route exact path="/sign-in" component={() => <Login handleAccount={this.handleAccount}/>} />
+              <Route exact path="/sign-up" component={SignUp} />
+              {/* <Route strict component={Error} /> */}
+              <Route component={DefaultContainer}/>
+            </div>
           </Switch>
-        </div>
-      </Router>
+      </BrowserRouter>
     );
   }
 }
