@@ -46,17 +46,19 @@ export default class App extends Component {
   render(){
     console.log("COOKIE",Cookies.get("stupidshit"),!Cookies.get("stuo"))
     console.log("App.js",this.handleAccount);
-      return (<Router>
-      <div className="App">
-            <Switch>
-              <Route path="/sign-in" component={() => <Login handleAccount={this.handleAccount}/>} />
-              <Route path="/sign-up" component={SignUp} />
-              <Route path="/cart" component={Cart} />
-              <Route path="/product/:id" component={Product}/>
-              <Route exact path='/' component={() => <Index user={this.state} handleAccount={this.handleAccount} />} />}  />
-              <Route exact path='*' component={Error} />
-            </Switch>
-      </div></Router>
+      return (
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route path="/sign-in" component={() => <Login handleAccount={this.handleAccount}/>} />
+            <Route path="/sign-up" component={SignUp} />
+            <Route path="/cart" component={Cart} />
+            <Route path="/product/:id" component={Product}/>
+            <Route exact path='/' component={() => <Index user={this.state} handleAccount={this.handleAccount} />} />}  />
+            <Route exact path='*' component={Error} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
