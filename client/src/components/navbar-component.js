@@ -2,21 +2,52 @@ import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../shared/stylesheets/navbar-style.css"
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
+import { serverUrl } from '../shared/baseUrl';
 class Navbar extends Component{
     constructor(props){
         super(props);
         this.state = {
-            search_query: ""
+            search_query: "",
+            autocomplete_res: []
         }
-        this.handleChangeField=this.handleChangeField.bind(this)
+        this.handleChangeField=this.handleChangeField.bind(this);
+    }
+    getSuggestions = () =>{
+        const squery = this.state.search_query;
+        console.log("SEARCHING",squery)
+        Axios.get(serverUrl+`search?squery=${squery}`)
+        .then(res =>{
+            this.setState({
+                autocomplete_res: res.data
+            })
+            console.log("RESULT",res.data)
+        })
+        .catch(err=>{
+            console.log("Error ",err)
+        });
     }
     handleChangeField(key, event) {
         this.setState({
-            [key]: event.target.value,
-        });
+            [key]: event.target.value
+        }, () => {
+            console.log(this.state.search_query);
+            if (this.state.search_query && this.state.search_query.length > 1) {
+                if (this.state.search_query.length % 2 === 0) {
+                    this.getSuggestions()
+                }
+            } 
+        })
     }
     render(){
-
+        const renderSuggestions = (data) =>{
+            const options = data.map(element=>(
+                <li key={element.id}>
+                    {element.name}
+                </li>
+            ))
+            return <ul>{options}</ul>
+        }
         const navbarHandler = (userdetails) =>{
             let searchBar = (userdetails) =>{
                 if(userdetails.role == "farmer"){
