@@ -59,7 +59,7 @@ class Login extends Component {
 
                 <div className="form-group">
                     <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                        <input type="checkbox" className="custom-control-input" id="customCheck1" checked/>
                         <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                     </div>
                 </div>
