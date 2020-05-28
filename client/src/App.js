@@ -40,12 +40,9 @@ export default class App extends Component {
       Cookies.remove('user_username');
 
     }
-    console.log("handleAccount",this.state);
   }
    
   render(){
-    console.log("COOKIE",Cookies.get("stupidshit"),!Cookies.get("stuo"))
-    console.log("App.js",this.handleAccount);
       return (
       <Router>
         <div className="App">

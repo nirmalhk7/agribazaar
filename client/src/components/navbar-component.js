@@ -15,13 +15,12 @@ class Navbar extends Component{
     }
     getSuggestions = () =>{
         const squery = this.state.search_query;
-        console.log("SEARCHING",squery)
+
         Axios.get(serverUrl+`search?squery=${squery}`)
         .then(res =>{
             this.setState({
                 autocomplete_res: res.data
             })
-            console.log("RESULT",res.data)
         })
         .catch(err=>{
             console.log("Error ",err)
@@ -31,7 +30,6 @@ class Navbar extends Component{
         this.setState({
             [key]: event.target.value
         }, () => {
-            console.log(this.state.search_query);
             if (this.state.search_query && this.state.search_query.length > 1) {
                 if (this.state.search_query.length % 2 === 0) {
                     this.getSuggestions()
@@ -40,14 +38,7 @@ class Navbar extends Component{
         })
     }
     render(){
-        const renderSuggestions = (data) =>{
-            const options = data.map(element=>(
-                <li key={element.id}>
-                    {element.name}
-                </li>
-            ))
-            return <ul>{options}</ul>
-        }
+
         const navbarHandler = (userdetails) =>{
             let searchBar = (userdetails) =>{
                 if(userdetails.role == "farmer"){
@@ -121,6 +112,7 @@ class Navbar extends Component{
             )
         }
         return(
+            <>
             <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
                 <a className="navbar-brand" href="/"> 
                     <b>Agri</b>Bazaar
@@ -134,6 +126,8 @@ class Navbar extends Component{
                     {navbarHandler(this.props.user)}
                 </div>
             </nav>
+            
+            </>
         );
     }
 }
