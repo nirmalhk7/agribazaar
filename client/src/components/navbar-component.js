@@ -37,6 +37,9 @@ class Navbar extends Component{
             } 
         })
     }
+    componentDidMount(){
+        document.getElementById("searchBar").value=this.props.location.search.split('=').slice(1).join('=')
+    }
     render(){
 
         const navbarHandler = (userdetails) =>{
@@ -49,7 +52,8 @@ class Navbar extends Component{
                         <form role="form" method="GET" action="/search" id = "search-form">
                             <div className="input-group">
                                 <input onChange={(ev) => this.handleChangeField('search_query', ev)}
-                                className="form-control" type="text" name="search" placeholder="Search Here" aria-label="Recipient's username" aria-describedby="button-addon2" />
+                                className="form-control" type="text" name="search" id="searchBar" placeholder="Search Here" 
+                                aria-label="Recipient's username" aria-describedby="button-addon2" />
                                 <div className="input-group-append"><button className="btn btn-warning" type="button" id="button-addon2"><i className="fa fa-search"></i></button></div>
                             </div>
                         </form>
@@ -111,6 +115,7 @@ class Navbar extends Component{
                 </>
             )
         }
+
         return(
             <>
             <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">

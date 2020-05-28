@@ -11,6 +11,7 @@ import Footer from "./components/footer-component";
 import Error from "./components/error-component"
 import Cookies from "js-cookie";
 import Product from "./components/product-description-component"
+import Search from './components/search-component';
 export default class App extends Component {
   constructor(props){
     super(props);
@@ -45,11 +46,12 @@ export default class App extends Component {
   }
    
   render(){
-      const DefaultContainer = () =>(
+      const DefaultContainer = ({match,location}) =>(
         <>
-        <div className='navbar'><Navbar user={this.state} handleAccount={this.handleAccount}/></div>
+        <div className='navbar'><Navbar location={location} user={this.state} handleAccount={this.handleAccount}/></div>
         <Route exact path="/cart" component={Cart} />
         <Route path="/product/:id" component={Product}/>
+        <Route path="/search" component={Search}/>
         <Route exact path='/' component={() => <Index user={this.state} handleAccount={this.handleAccount} />} />
         <div className="footer"><Footer/></div>
         </>
