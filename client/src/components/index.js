@@ -11,7 +11,7 @@ import slides from '../shared/data/slider-images'
 const Index = (props) => {
     return (
         <div>
-            <div className='navbar'><Navbar user={props.user} handleAccount={props.handleAccount}/></div>
+            
             <div className='slider'><Slider images = {slides.images}/></div>
             <div className="offer"><Offer/></div>
             <div className="containers-fluid">
@@ -19,7 +19,7 @@ const Index = (props) => {
                     <Products/>
                 </div>
             </div>
-            <div className="footer"><Footer/></div>
+            
         </div>
     );
 }

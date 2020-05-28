@@ -6,6 +6,8 @@ import  Index from "./components/index"
 import Login from "./components/login-component";
 import SignUp from "./components/signup-component";
 import Cart from "./components/cart-component";
+import Navbar from "./components/navbar-component";
+import Footer from "./components/footer-component";
 import Error from "./components/error-component"
 import Cookies from "js-cookie";
 import Product from "./components/product-description-component"
@@ -45,9 +47,11 @@ export default class App extends Component {
   render(){
       const DefaultContainer = () =>(
         <>
+        <div className='navbar'><Navbar user={this.state} handleAccount={this.handleAccount}/></div>
         <Route exact path="/cart" component={Cart} />
         <Route path="/product/:id" component={Product}/>
         <Route exact path='/' component={() => <Index user={this.state} handleAccount={this.handleAccount} />} />}  />
+        <div className="footer"><Footer/></div>
         </>
       )
       return (
