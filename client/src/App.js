@@ -50,7 +50,7 @@ export default class App extends Component {
         <div className='navbar'><Navbar user={this.state} handleAccount={this.handleAccount}/></div>
         <Route exact path="/cart" component={Cart} />
         <Route path="/product/:id" component={Product}/>
-        <Route exact path='/' component={() => <Index user={this.state} handleAccount={this.handleAccount} />} />}  />
+        <Route exact path='/' component={() => <Index user={this.state} handleAccount={this.handleAccount} />} />
         <div className="footer"><Footer/></div>
         </>
       )
