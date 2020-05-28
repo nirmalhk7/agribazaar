@@ -38,7 +38,10 @@ class Navbar extends Component{
         })
     }
     componentDidMount(){
-        document.getElementById("searchBar").value=this.props.location.search.split('=').slice(1).join('=')
+        if(document.getElementById("searchBar"))
+        {
+            document.getElementById("searchBar").value=this.props.location.search.split('=').slice(1).join('=')
+        }
     }
     render(){
 
@@ -120,7 +123,7 @@ class Navbar extends Component{
             <>
             <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
                 <a className="navbar-brand" href="/"> 
-                    <b>Agri</b>Bazaar
+                &#x1f33e;<b>Agri</b>Bazaar
                 </a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
