@@ -7,9 +7,10 @@ var logger = require('morgan');
 
 
 var cors = require('cors');
+var colors = require('colors');
 var app = express();
 var router = express.Router();
-
+var websockets = require('./websockets');
 
 
 // view engine setup
@@ -32,7 +33,6 @@ var farmerRouter = require('./routes/farmerRouter');
 var mysqlRouter = require('./config');
 global.db=mysqlRouter;
 
-
 app.use('/api',(req,res,next)=>{
   res.end('AgriBazaar Server is Up!')
 });
@@ -44,10 +44,10 @@ app.use('/users',userRouter);
 app.use('/farmers',farmerRouter);
 // catch 404 and forward to error handler
 
+
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

@@ -3,37 +3,37 @@ var router = express.Router();
 
 router.route('/')
 .get((req,res,next)=>{
-    console.log('Get Cart');
     var userId =  req.params.userId;
     let sql="call Cart_getItems("+userId+")";
+    console.log("QUERY".query,sql)
     db.query(sql,function(err,ans){
         if(err)
         {
-            throw console.error("ERROR",err);
+            throw console.error("ERROR".error,err);
         }
-        console.log("RESULT",JSON.stringify(ans[0]));
+        console.log("RESULT".success,JSON.stringify(ans[0]));
         res.end(JSON.stringify(ans[0]));
     });
 })
 .put((req,res,next)=>{
     var sql = "CALL Cart_addToCart("+req.params.userId+")";
-    console.log("QUERY",sql);
+    console.log("QUERY".query,sql);
     db.query(sql,(err,ans)=>{
         if(err){
-            throw console.error("ERROR",err);
+            throw console.error("ERROR".error,err);
         }
-        console.log("RESULT",JSON.stringify(ans[0]));
+        console.log("RESULT".success,JSON.stringify(ans[0]));
         res.end(JSON.stringify(ans[0]));
     })
 })
 .delete((req,res,next)=>{
     var sql = "CALL Cart_clearAll("+req.params.userId+")";
-    console.log("QUERY",sql);
+    console.log("QUERY".query,sql);
     db.query(sql,(err,ans)=>{
         if(err){
-            throw console.error("ERROR",err);
+            throw console.error("ERROR".error,err);
         }
-        console.log("RESULT",JSON.stringify(ans[0]));
+        console.log("RESULT".success,JSON.stringify(ans[0]));
         res.end(JSON.stringify(ans[0]));
     })
 });
