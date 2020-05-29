@@ -7,7 +7,6 @@ var logger = require('morgan');
 
 
 var cors = require('cors');
-var colors = require('colors');
 var app = express();
 var router = express.Router();
 var websockets = require('./websockets');
@@ -27,10 +26,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 var searchRouter = require('./routes/searchRouter');
 var itemRouter = require('./routes/itemRouter');
 var authRouter = require('./routes/authRouter');
-var cartRouter = require('./routes/cartRouter');
+var cartRouter = require('./routes/cartRouter').cart;
 var userRouter = require('./routes/userRouter');
 var farmerRouter = require('./routes/farmerRouter');
 var mysqlRouter = require('./config');
+var cli_color = require('./common').cli_color;
+
 global.db=mysqlRouter;
 
 app.use('/api',(req,res,next)=>{
@@ -39,7 +40,7 @@ app.use('/api',(req,res,next)=>{
 app.use('/search',searchRouter);
 app.use('/item',itemRouter);
 app.use('/auth',authRouter);
-app.use('/cartRouter',cartRouter);
+app.use('/cart',cartRouter);
 app.use('/users',userRouter);
 app.use('/farmers',farmerRouter);
 // catch 404 and forward to error handler

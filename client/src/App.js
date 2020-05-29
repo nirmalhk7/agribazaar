@@ -48,6 +48,7 @@ export default class App extends Component {
   }
   componentDidMount(){
     const socket = SIOC(websocketUrl)
+    socket.emit('get cart',2)
   }
   render(){
       const DefaultContainer = ({match,location}) =>(
