@@ -4,18 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var common = require('./routes/common');
-var dashboard = require('./routes/dashboard');
-var farmer = require('./routes/farmers');
-var main = require('./routes/main');
-var shoppers = require('./routes/shoppers');
-var config = require('./config');
+
+
 var cors = require('cors');
 var app = express();
 var router = express.Router();
+var websockets = require('./websockets');
 
-global.db=config;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,23 +22,33 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/',router.get('/',function(req,res,next){
-  res.render('index',{title:"AgriBazaar"})
-}));
-app.post('/api/logout/:userid',main.logout);
-app.post('/api/login',main.login);
-app.use('/api/:userId',common.getprofile);
-app.use('/api/:userId/cart',dashboard.mycart);
-app.use('/api/:userid/addItems',farmer.addItems);
-app.use('/api/:userid/lastsales',farmer.lastSales);
-app.use('/api/search/:squery',main.search);
-app.use('/api/search/itemseller/:item',main.getItemSeller);
+
+var searchRouter = require('./routes/searchRouter');
+var itemRouter = require('./routes/itemRouter');
+var authRouter = require('./routes/authRouter');
+var cartRouter = require('./routes/cartRouter').cart;
+var userRouter = require('./routes/userRouter');
+var farmerRouter = require('./routes/farmerRouter');
+var mysqlRouter = require('./config');
+var cli_color = require('./common').cli_color;
+
+global.db=mysqlRouter;
+
+app.use('/api',(req,res,next)=>{
+  res.end('AgriBazaar Server is Up!')
+});
+app.use('/search',searchRouter);
+app.use('/item',itemRouter);
+app.use('/auth',authRouter);
+app.use('/cart',cartRouter);
+app.use('/users',userRouter);
+app.use('/farmers',farmerRouter);
 // catch 404 and forward to error handler
+
 
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

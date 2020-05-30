@@ -14,9 +14,16 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '9000');
 app.set('port', port);
+app.portNumber = port;
 /**
  * Create HTTP server.
  */
+var runmode = process.env.NODE_ENV;
+if(!runmode){
+  runmode="development"
+}
+runmode.toUpperCase();
+console.log("Running in "+runmode+" mode on port "+port);
 
 var server = http.createServer(app);
 
@@ -86,4 +93,7 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+}
+exports = module.exports = {
+  portNumber : port
 }
